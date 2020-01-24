@@ -23,9 +23,20 @@ public class RevPIDSubsystem extends Subsystem {
 
   CANSparkMax motor;
   CANPIDController pid;
+  CANSparkMax motor2;
+  CANPIDController pid2;
   public RevPIDSubsystem() {
     motor = new CANSparkMax(1, MotorType.kBrushless);
     pid = new CANPIDController(motor);
+    pid.setP(5e-5);
+    pid.setI(1e-6);
+    pid.setD(0);
+    pid.setIZone(0);
+    pid.setFF(0);
+    pid.setOutputRange(-5700, 5700);
+
+    motor2 = new CANSparkMax(2, MotorType.kBrushless);
+    pid2 = new CANPIDController(motor2);
     pid.setP(5e-5);
     pid.setI(1e-6);
     pid.setD(0);
@@ -40,12 +51,16 @@ public class RevPIDSubsystem extends Subsystem {
 
     pid.setReference(position, ControlType.kPosition);
    
+    pid2.setReference(position, ControlType.kPosition);
+   
   }
 
     
   public void goToRPM(double RPM) {
 
     pid.setReference(RPM, ControlType.kVelocity);
+   
+    pid2.setReference(RPM, ControlType.kVelocity);
    
   }
 
