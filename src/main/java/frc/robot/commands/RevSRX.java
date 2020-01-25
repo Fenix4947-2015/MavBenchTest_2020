@@ -24,7 +24,7 @@ public class RevSRX extends CommandGroup {
     // e.g. addParallel(new Command1());
     // addSequential(new Command2());
     // Command1 and Command2 will run in parallel.
-    addSequential(new RevPIDCommand(0.25, 3000));
+    addSequential(new RevPIDCommand(0.25, 2000));
     //addSequential(new RevPIDCommand(-0.25, -100));
     //addSequential(new RevPIDCommand(0.25, 100));
     //addSequential(new RevPIDCommand(-0.25, -100));
